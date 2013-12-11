@@ -18,7 +18,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = flask.Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+dburl = 'postgresql://localhost/shrinklocal'
+app.config['SQLALCHEMY_DATABASE_URI'] = dburl
 
 db = SQLAlchemy(app)
 
@@ -63,8 +64,8 @@ class Bundle(db.Model):
 
 if __name__ == '__main__':
     db.create_all()
-    pr = Bundle('profile-ev')
-    re = Links('evphan.com', 'v', pr)
+    pr = Bundle('profile-sh')
+    re = Links('www.seekshreyas.com', 'sshr', pr)
 
 
     db.session.add(re)
