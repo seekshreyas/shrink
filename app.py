@@ -15,6 +15,20 @@ db = shelve.open("shorten.db")
 # db = {}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ###
 # Home Resource:
 # Only supports the GET method, returns a homepage represented as HTML
