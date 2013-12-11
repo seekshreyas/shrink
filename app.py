@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import shelve
-from subprocess import check_output
 import flask
 from flask import request
 # from os import environ
@@ -99,6 +98,7 @@ def short_put():
     return flask.render_template('response.html',
                                     msgtype=msg['type'],
                                     msgtxt=msg['txt'] )
+
 
 
 if __name__ == "__main__":
