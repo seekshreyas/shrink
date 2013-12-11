@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# import shelve
+import shelve
 from subprocess import check_output
 import flask
 from flask import request
