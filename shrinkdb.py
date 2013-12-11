@@ -17,6 +17,7 @@ import flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 app = flask.Flask(__name__)
 dburl = 'postgresql://localhost/shrinklocal'
 app.config['SQLALCHEMY_DATABASE_URI'] = dburl
