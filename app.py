@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
-import shelve
+# import shelve
 import flask
 from flask import request
 # from os import environ
-# from shrinkdb import db
+from shrinkdb import db
 # import json
 import re
 
 app = flask.Flask(__name__)
 app.debug = True
 
-db = shelve.open("shorten.db")
+# db = shelve.open("shorten.db")
 
 # db = {}
 
