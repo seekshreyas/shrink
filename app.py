@@ -65,7 +65,7 @@ def home():
 
 
 
-@app.route('/s/<surl>', methods=['GET'])
+@app.route('/shorts/<surl>', methods=['GET'])
 def short_get(surl):
     """
     Redirect to the shortened url
@@ -81,36 +81,59 @@ def short_get(surl):
 
 
 
-# # @app.route("/shorts", methods=['PUT', 'POST'])
-# # def short_put():
-# #     """
-# #     create a shortened url for the link
-# #     """
-# #     shorturl = str(request.form['s'])
-# #     longurl = str(request.form['l'])
+@app.route("/shorts", methods=['PUT', 'POST'])
+def short_put():
+    """
+    create a shortened url for the link
+    """
+    surl = str(request.form['s'])
+    lurl = str(request.form['l'])
+    bundle = str(request.form['b'])
+
+    surlrecord = Links.query.filter_by(shorturl=surl).first()
+
+    msg = {}
+
+    responsepage = ''
+    if surlrecord is None:
+        msg['type'] = 'ERROR'
+        msg['txt'] = 'Short URL already exists'
+
+        responsepage = 'response.html'
+
+    else:
+
+        # regex courtesy: http://stackoverflow.com/questions/11242258/strip-url-python
+        lurl = re.match(r'(?:\w*://)?(?:.*\.)?([a-zA-Z-1-9]*\.[a-zA-Z]{1,}).*', lurl).groups()[0]
+
+        bund = Bundles(bundle)
+        slink = Links(lurl, surl, bund)
+
+        try:
+            db.session.add(bund)
+            db.session.add(slink)
+            db.session.commit()
+
+            msg['type'] = 'Success'
+            msg['txt'] = record.longurl + " => " + record.shorturl
+
+            responsepage = 'response.html'
+
+        except:
+            db.session.rollback()
+            # raise()
+
+            msg['type'] = 'ERROR'
+            msg['txt'] = 'Short URL already exists'
+
+            responsepage = 'response.html'
 
 
 
-
-#     msg = {}
-#     if db.has_key(shorturl):
-#         msg['type'] = 'ERROR'
-#         msg['txt'] = 'Short URL already exists'
+    return flask.render_template(responsepage, msgtype=msg['type'], msgtxt=msg['txt'] )
 
 
-#     else:
 
-#         # regex courtesy: http://stackoverflow.com/questions/11242258/strip-url-python
-#         longurl = re.match(r'(?:\w*://)?(?:.*\.)?([a-zA-Z-1-9]*\.[a-zA-Z]{1,}).*', longurl).groups()[0]
-
-#         db[shorturl] = longurl
-
-#         msg['type'] = 'Success'
-#         msg['txt'] = db[shorturl] + " => " + shorturl
-
-#     return flask.render_template('response.html',
-#                                     msgtype=msg['type'],
-#                                     msgtxt=msg['txt'] )
 
 
 
