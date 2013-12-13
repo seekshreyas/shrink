@@ -16,7 +16,9 @@ from datetime import datetime
 import json
 
 app = flask.Flask(__name__)
-dburl = 'sqlite:////tmp/shrinklocal.db'
+# dburl = 'sqlite:////tmp/shrinklocal.db'
+dburl = 'sqlite:////tmp/shrinklocal2.db'
+
 # dburl = 'postgres://rfgihzmnveahtg:UqRf3jksouzSu5XYyQpTPZ-HyX@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6l97mheia499m'
 # dburl = 'postgresql://localhost/shrinklocal'
 app.config['SQLALCHEMY_DATABASE_URI'] = dburl
@@ -57,16 +59,13 @@ class Bundles(db.Model):
     bundlename = db.Column(db.String(50))
 
     bundle_id = db.Column(db.Integer, db.ForeignKey('links.id'))
-    bundle = db.relationship('Links', backref=db.backref('links', lazy='joined'))
+    bundle = db.relationship('Links', backref=db.backref('links', lazy='dynamic'))
 
 
     def __init__(self, bundlename):
         self.bundlename = bundlename
 
     def __repr__(self):
-        response = {
-            'bname' :  self.bundlename
-        }
 
         return json.dumps(self.bundlename)
 

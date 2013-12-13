@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-import shelve
+# import shelve
 import flask
 from flask import request
 # from os import environ
 from shrinkdb import db
 from shrinkdb import Links
 from shrinkdb import Bundles
-import json
+# import json
 import re
 
 app = flask.Flask(__name__)
@@ -41,13 +41,26 @@ def home():
     """Render the hompepage"""
     # index_title = request.args.get("title", "i253")
     # hello_name = request.args.get("name", "Jim")
+
+    alllinks = {}
     bund = Bundles.query.all()
-    links = Links.query.all()
+
     app.logger.debug("Bundles =>" + str(bund))
-    app.logger.debug("Links =>" + str(links))
+    for b in bund:
+
+        blinks = db.session.query(Links).join(Bundles).filter(Bundles.bundlename==b).all()
+        alllinks[b] = {
+            'shorturl' : blinks.shorturl,
+            'longurl' : blinks.longurl,
+            'hitcount' : blinks.hitcount
+        }
 
 
-    return flask.render_template('index.html',responselinks=links, responsebundles=bund)
+
+    # app.logger.debug("Links =>" + str(links))
+
+
+    return flask.render_template('index.html',responselinks=alllinks)
 
 
 
@@ -92,14 +105,19 @@ def short_put():
 
     surlrecord = Links.query.filter_by(shorturl=surl).first()
 
+    app.logger.debug("Request : " + " surlrecord: " + str(surlrecord) + " surl :" + str(surl) + " lurl :" + str(lurl))
+
     msg = {}
 
-    responsepage = ''
-    if surlrecord is None:
+    responsepage = 'response.html'
+
+    if surlrecord is not None and surlrecord.shorturl is not None :
         msg['type'] = 'ERROR'
         msg['txt'] = 'Short URL already exists'
 
-        responsepage = 'response.html'
+    elif surlrecord is not None and surlrecord.longurl is not None:
+        msg['type'] = 'ERROR'
+        msg['txt'] = 'Long URL already exists'
 
     else:
 
@@ -108,26 +126,23 @@ def short_put():
 
         bund = Bundles(bundle)
         slink = Links(lurl, surl, bund)
+        app.logger.debug("Creating : " + str(surl) + str(lurl))
 
         try:
+
             db.session.add(bund)
             db.session.add(slink)
             db.session.commit()
 
             msg['type'] = 'Success'
-            msg['txt'] = record.longurl + " => " + record.shorturl
-
-            responsepage = 'response.html'
+            msg['txt'] = lurl + " => " + surl
 
         except:
             db.session.rollback()
             # raise()
 
             msg['type'] = 'ERROR'
-            msg['txt'] = 'Short URL already exists'
-
-            responsepage = 'response.html'
-
+            msg['txt'] = 'Database Exception'
 
 
     return flask.render_template(responsepage, msgtype=msg['type'], msgtxt=msg['txt'] )

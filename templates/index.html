@@ -61,7 +61,7 @@
                 <article class="container-sect" id="wrapper-links">
                     <ul class="list-bundle">
 
-                        {% for bund in responsebundles %}
+                        {% for bund, links in responselinks.iteritems() %}
                         
                         <li class="list-bundle-item">
 
@@ -70,7 +70,7 @@
 
                             
                             <ul class="list-link">
-                                {% for l in responselinks %}
+                                {% for l in links %}
                                 <li class="list-link-item">
                                     <span class="link-long">{{ l.longurl }}</span>
                                     <span class="link-short">{{ l.shorturl }}</span>
