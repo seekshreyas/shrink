@@ -56,7 +56,7 @@ SHRINK = (function(){
 
 			dataitem += bitem;
 		}
-		// console.log("replace item", dataitem);
+		console.log("replace item", dataitem);
 		jQuery('#sbundle').html(dataitem);
 	}
 

@@ -157,7 +157,9 @@ def short_put():
             msg['txt'] = 'Database Exception'
 
 
-    return json.dumps(msg)
+    return flask.render_template(responsepage,
+                                    msgtype=msg['type'],
+                                    msgtxt=msg['txt'] )
 
 
 
