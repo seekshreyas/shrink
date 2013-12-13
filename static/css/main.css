@@ -191,6 +191,24 @@ section {
         clear:both;
     }
 
+    .generallist.list-bundle li {
+        width:100%;
+        /*border:1px solid red;*/
+    }
+
+.generallist.list-link{
+    width:80%;
+    margin:0 0 0 20%;
+}
+
+
+    .generallist.list-link span{
+        width:30%;
+        margin:0 0 0 3%;
+        display:block;
+        float:left;
+    }
+
 
 em {
     font-style:normal;

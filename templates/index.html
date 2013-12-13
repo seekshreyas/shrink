@@ -21,11 +21,11 @@
         <!-- Add your site or application content here -->
        <header>
             <div class="wrapper-page">
-                <figure class="pict" id="pict-self">
+                <!-- <figure class="pict" id="pict-self">
                     <img src="static/img/pict_evie.jpg">
-                </figure>
+                </figure> -->
                 <h1>Evie Phan</h1>
-                <p>Badass Gamer</p>
+                <p>Gamer</p>
             </div>
         </header>
         <section>
@@ -41,12 +41,12 @@
                             <ul class="generallist wrappedfield" id="list-form">
                                 <li class="listitem">
                                     <input type="text" id="field-link-long" placeholder="longurl" pattern="^[a-zA-Z0-9_-.]*$" name="l" required>
-                                    <input type="text" id="field-link-short" placeholder="shorturl" pattern="^[a-zA-Z0-9_-.]*$" name="s" required>
-                                    <input type="text" id="field-link-bundle" list="sbundle" name="b" placeholder="bundle" >
+                                    <input type="text" id="field-link-short" placeholder="shorturl" pattern="^[a-zA-Z]*$" name="s" required>
+                                    <input type="text" id="field-link-bundle" list="sbundle" name="b" placeholder="bundle" required >
                                     <datalist id="sbundle">
-                                        <option value="bundlename1"></option>
-                                        <option value="bundlename2"></option>
-                                        <option value="bundlename3"></option>
+                                        <!-- <option value="bundlename1"></option> -->
+                                        <!-- <option value="bundlename2"></option>
+                                        <option value="bundlename3"></option> -->
                                     </datalist>
                                     <button class="icon-entypo btn-addmore" title="add more links">&plus;</button>
                                 </li>
@@ -59,9 +59,9 @@
 
                 </div>
                 <article class="container-sect" id="wrapper-links">
-                    <ul class="list-bundle">
+                    <ul class="generallist list-bundle">
 
-                        {% for bund, links in responselinks.iteritems() %}
+                        {% for bund in responsebundles %}
                         
                         <li class="list-bundle-item">
 
@@ -69,11 +69,11 @@
                             <span class="slink-bundle">{{ bund }}</span>
 
                             
-                            <ul class="list-link">
-                                {% for l in links %}
+                            <ul class="generallist list-link">
+                                {% for l in responselinks %}
                                 <li class="list-link-item">
-                                    <span class="link-long">{{ l.longurl }}</span>
-                                    <span class="link-short">{{ l.shorturl }}</span>
+                                    <span class="link-long"><a href={{ "http://www." + l.longurl }}> {{ l.longurl }}</a></span>
+                                    <span class="link-short"><a href={{ "shorts/" + l.shorturl }}> {{ l.shorturl }} </a></span>
                                     <span class="link-hit">{{ l.hitcount }}</span>
                                 </li>
                                 {% endfor %}

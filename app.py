@@ -7,7 +7,7 @@ from flask import request
 from shrinkdb import db
 from shrinkdb import Links
 from shrinkdb import Bundles
-# import json
+import json
 import re
 
 app = flask.Flask(__name__)
@@ -42,25 +42,26 @@ def home():
     # index_title = request.args.get("title", "i253")
     # hello_name = request.args.get("name", "Jim")
 
-    alllinks = {}
+    # alllinks = {}
     bund = Bundles.query.all()
+    links = Links.query.all()
 
-    app.logger.debug("Bundles =>" + str(bund))
-    for b in bund:
+    # app.logger.debug("Bundles =>" + str(bund))
+    # for b in bund:
 
-        blinks = db.session.query(Links).join(Bundles).filter(Bundles.bundlename==b).all()
-        alllinks[b] = {
-            'shorturl' : blinks.shorturl,
-            'longurl' : blinks.longurl,
-            'hitcount' : blinks.hitcount
-        }
+    #     blinks = db.session.query(Links).join(Bundles).filter(Bundles.bundlename==b).all()
+    #     alllinks[b] = {
+    #         'shorturl' : blinks.shorturl,
+    #         'longurl' : blinks.longurl,
+    #         'hitcount' : blinks.hitcount
+    #     }
 
 
 
     # app.logger.debug("Links =>" + str(links))
 
 
-    return flask.render_template('index.html',responselinks=alllinks)
+    return flask.render_template('index.html',responselinks=links,  responsebundles=bund)
 
 
 
@@ -87,7 +88,17 @@ def short_get(surl):
 
     record = Links.query.filter_by(shorturl=surl).first_or_404()
 
-    app.logger.debug("Request : " + str(record.shorturl) + " => " + str(record.longurl))
+    if record is not None:
+        dbupdate = Links(record.longurl, record.shorturl, (record.hitcount + 1))
+
+        try:
+            db.session.add(dbupdate)
+            db.session.commit()
+        except:
+            db.session.rollback()
+
+
+        app.logger.debug("Request : " + str(record.shorturl) + " => " + str(record.longurl))
 
     return flask.redirect("http://" + record.longurl)
 
@@ -101,6 +112,9 @@ def short_put():
     """
     surl = str(request.form['s'])
     lurl = str(request.form['l'])
+    # regex courtesy: http://stackoverflow.com/questions/11242258/strip-url-python
+    lurl = re.match(r'(?:\w*://)?(?:.*\.)?([a-zA-Z-1-9]*\.[a-zA-Z]{1,}).*', lurl).groups()[0]
+
     bundle = str(request.form['b'])
 
     surlrecord = Links.query.filter_by(shorturl=surl).first()
@@ -121,8 +135,6 @@ def short_put():
 
     else:
 
-        # regex courtesy: http://stackoverflow.com/questions/11242258/strip-url-python
-        lurl = re.match(r'(?:\w*://)?(?:.*\.)?([a-zA-Z-1-9]*\.[a-zA-Z]{1,}).*', lurl).groups()[0]
 
         bund = Bundles(bundle)
         slink = Links(lurl, surl, bund)
@@ -145,9 +157,25 @@ def short_put():
             msg['txt'] = 'Database Exception'
 
 
-    return flask.render_template(responsepage, msgtype=msg['type'], msgtxt=msg['txt'] )
+    return json.dumps(msg)
 
 
+
+@app.route('/bundles', methods=['GET'])
+def get_bundles():
+    """
+    return all the bundles of a user
+    """
+    allbund = Bundles.query.all()
+    bundnames = []
+    for b in allbund:
+        bundnames.append(str(b).strip())
+    bundnames = list(set(bundnames))
+
+    app.logger.debug("bundles: ", bundnames)
+
+
+    return flask.Response(json.dumps(bundnames), mimetype="application/json")
 
 
 
