@@ -17,9 +17,9 @@ import json
 
 app = flask.Flask(__name__)
 # dburl = 'sqlite:////tmp/shrinklocal.db'
-dburl = 'sqlite:////tmp/shrinklocal2.db'
+# dburl = 'sqlite:////tmp/shrinklocal2.db'
 
-# dburl = 'postgres://rfgihzmnveahtg:UqRf3jksouzSu5XYyQpTPZ-HyX@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6l97mheia499m'
+dburl = 'postgres://rfgihzmnveahtg:UqRf3jksouzSu5XYyQpTPZ-HyX@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6l97mheia499m'
 # dburl = 'postgresql://localhost/shrinklocal'
 app.config['SQLALCHEMY_DATABASE_URI'] = dburl
 

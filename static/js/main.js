@@ -23,7 +23,7 @@ SHRINK = (function(){
 		var blist = []
 		response = jQuery.ajax({
 						type: "GET", 
-						url: "http://localhost:5000/bundles"
+						url: "http://sshr-shrink.herokuapp.com/bundles"
 					})
 					.done(function(msg){
 						console.log("Data receieved", msg);
