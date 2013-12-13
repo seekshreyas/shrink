@@ -13,7 +13,7 @@ python_version = "Python 2.7.5 :: Anaconda 1.6.1 (x86_64)"
 import flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+import json
 
 app = flask.Flask(__name__)
 dburl = 'sqlite:////tmp/shrinklocal.db'
@@ -42,10 +42,17 @@ class Links(db.Model):
 
 
     def __repr__(self):
-        return '<Shorturl %r>' % self.shorturl
+        response = {
+            'longurl': self.longurl,
+            'shorturl': self.shorturl,
+            'hitcount' : self.hitcount
+        }
+
+        return json.dumps(response)
+        # return response
 
 
-class Bundle(db.Model):
+class Bundles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     bundlename = db.Column(db.String(50))
 
@@ -57,30 +64,34 @@ class Bundle(db.Model):
         self.bundlename = bundlename
 
     def __repr__(self):
-        return '<Bundle %r>' % self.bundlename
+        response = {
+            'bname' :  self.bundlename
+        }
+
+        return json.dumps(self.bundlename)
 
 
 
 
-# if __name__ == '__main__':
-#     db.create_all()
-#     pr = Bundle('profile')
-#     re = Links('www.github.com/seekshreyas', 'gh', pr)
+if __name__ == '__main__':
+    db.create_all()
+    # pr = Bundle('profile')
+    # re = Links('www.github.com/seekshreyas', 'gh', pr)
 
 
-#     db.session.add(re)
-#     db.session.add(pr)
+    # db.session.add(re)
+    # db.session.add(pr)
 
 
 
 
-#     db.session.commit()
-#     links = Links.query.all()
-#     print links
+    # db.session.commit()
+    # links = Links.query.all()
+    # print links
 
 
 #     # referece: http://stackoverflow.com/questions/17642366/integrity-error-flask-sqlalchemy
-#     app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=False)
 
 
 

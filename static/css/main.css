@@ -183,6 +183,8 @@ section {
     list-style: none;
     float:left;
     width:100%;
+    margin:0;
+    padding:0;
 }
     .generallist li{
         float:left;
@@ -265,11 +267,12 @@ header{
         border:1px solid #bfbfbf;
     }
 
-        .generalform ul > li{
+        .generalform ul  li{
             width:98%;
-            margin:0.5em 1%;
+            margin:0.5em 0.5%;
+            float:left;
         }
-                .generalform ul > li > label{
+                .generalform ul  li > label{
                     float:left;
                     width:29%;
                     text-align:right;
@@ -283,6 +286,8 @@ header{
         /*ul*/
         .wrappedfield input[type=text]{
             width:29%;
+            float:left;
+            margin:0 1% 0 0;
         }
 
         button.icon-entypo{
@@ -292,10 +297,9 @@ header{
 
         /*button*/
         .btn-addmore{
-            width:1%;
+            width:20px;
             color:#666;
             cursor:pointers;
-            font-size:20px;
 
         }
 
@@ -334,6 +338,7 @@ header{
 .container-sect{
     float:left;
     clear:both;
+    width:100%;
 }
 
 

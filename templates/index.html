@@ -36,10 +36,10 @@
         <section>
             <div class="wrapper-page">
                 <div class="container-sect">
-                    <form class="generalform" id="form-shrink" action="/shorts">
+                    <form class="generalform" id="form-shrink" action="/shorts" method="POST">
                         <fieldset>
-                            <ul class="generallist wrappedfield">
-                                <li>
+                            <ul class="generallist wrappedfield" id="list-form">
+                                <li class="listitem">
                                     <input type="text" id="field-link-long" placeholder="longurl" pattern="^[a-zA-Z0-9_-.]*$" name="l" required>
                                     <input type="text" id="field-link-short" placeholder="shorturl" pattern="^[a-zA-Z0-9_-.]*$" name="s" required>
                                     <input type="text" id="field-link-bundle" list="sbundle" name="b" placeholder="bundle" >
@@ -48,7 +48,7 @@
                                         <option value="bundlename2"></option>
                                         <option value="bundlename3"></option>
                                     </datalist>
-                                    <button class="icon-entypo" class="btn-addmore" title="add more links">&oplus;</button>
+                                    <button class="icon-entypo btn-addmore" title="add more links">&plus;</button>
                                 </li>
                             </ul>
                         </fieldset>
@@ -56,78 +56,35 @@
                             <input type="submit">
                         </fieldset>
                     </form>
+
                 </div>
                 <article class="container-sect" id="wrapper-links">
                     <ul class="list-bundle">
-                        <li class="list-bundle-item">
-                            <span class="slink-bundle">Profile</span>
 
+                        {% for bund in responsebundles %}
+                        
+                        <li class="list-bundle-item">
+
+                            
+                            <span class="slink-bundle">{{ bund }}</span>
+
+                            
                             <ul class="list-link">
+                                {% for l in responselinks %}
                                 <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
+                                    <span class="link-long">{{ l.longurl }}</span>
+                                    <span class="link-short">{{ l.shorturl }}</span>
+                                    <span class="link-hit">{{ l.hitcount }}</span>
                                 </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
+                                {% endfor %}
                             </ul>
+                           
 
                         </li>
-                        <li class="list-bundle-item">
-                            <span class="slink-bundle">Resume</span>
-
-                            <ul class="list-link">
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-bundle-item">
-                            <span class="slink-bundle">Fun</span>
-
-                            <ul class="list-link">
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                                <li class="list-link-item">
-                                    <span class="link-long">www.github.com</span>
-                                    <span class="link-short">gh</span>
-                                </li>
-                            </ul>
-
-                        </li>
+                         {% endfor %}
+                        
+                        
+                       
                     </ul>
                 </article>
 
