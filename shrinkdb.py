@@ -1,15 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 """
-ShrinkDB
+Shrinkdb
 =========
 
 DB script for Shrink app ::
 An app to generate short urls for long urls
 
-
-author = "Shreyas"
-email = "shreyas@ischool.berkeley.edu"
 python_version = "Python 2.7.5 :: Anaconda 1.6.1 (x86_64)"
 """
 
@@ -19,7 +16,9 @@ from datetime import datetime
 
 
 app = flask.Flask(__name__)
-dburl = 'postgresql://localhost/shrinklocal'
+dburl = 'sqlite:////tmp/shrinklocal.db'
+# dburl = 'postgres://rfgihzmnveahtg:UqRf3jksouzSu5XYyQpTPZ-HyX@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6l97mheia499m'
+# dburl = 'postgresql://localhost/shrinklocal'
 app.config['SQLALCHEMY_DATABASE_URI'] = dburl
 
 db = SQLAlchemy(app)
@@ -63,24 +62,25 @@ class Bundle(db.Model):
 
 
 
-if __name__ == '__main__':
-    db.create_all()
-    pr = Bundle('profile-sh')
-    re = Links('www.seekshreyas.com', 'sshr', pr)
+# if __name__ == '__main__':
+#     db.create_all()
+#     pr = Bundle('profile')
+#     re = Links('www.github.com/seekshreyas', 'gh', pr)
 
 
-    db.session.add(re)
-    db.session.add(pr)
-
-    links = Links.query.all()
+#     db.session.add(re)
+#     db.session.add(pr)
 
 
-    db.session.commit()
-    print links
 
 
-    # referece: http://stackoverflow.com/questions/17642366/integrity-error-flask-sqlalchemy
-    app.run(debug=True, use_reloader=False)
+#     db.session.commit()
+#     links = Links.query.all()
+#     print links
+
+
+#     # referece: http://stackoverflow.com/questions/17642366/integrity-error-flask-sqlalchemy
+#     app.run(debug=True, use_reloader=False)
 
 
 
