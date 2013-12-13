@@ -452,8 +452,74 @@ header{
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (max-width: 1024px) {
     /* Style adjustments for viewports that meet the condition */
+    .wrapper-page{
+        width:310px;
+        float:left;
+        clear:both;
+        
+    }
+
+    #list-form input[type=text]{
+        clear:both;
+        width:90%;
+    }
+
+    li.list-bundle-item{
+        width:100%;
+        float:left;
+        clear:both;
+    }
+
+    ul.list-link{
+        
+        margin:0;
+        float:left;
+        clear:both !important;
+        width:100%;
+    }
+
+
+
+    li.list-link-item{
+        border-bottom:1px solid #bfbfbf;
+        float:left;
+        width:100%;
+    }
+
+        ul.list-link li span{
+            float:left;
+            display:block;
+            
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width:50%;
+        }
+
+            ul.list-link li span.link-long{
+                width:70% !important;
+                float:left;
+                
+                color:red !important;
+            }
+
+            ul.list-link li span.link-short{
+                width:20% !important;
+                float:right !important;
+                
+                text-align:right !important;
+                
+            }
+
+            /*span.link-long*/
+            ul.list-link li span.link-hit{
+                display:none !important;
+                
+
+                /*visibility: hidden;*/
+            }
+    
 }
 
 @media print,
