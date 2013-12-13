@@ -101,6 +101,227 @@ textarea {
 
 
 
+/*
+** MODULE:: all;
+*/
+
+/*fonts*/
+@font-face{    
+  font-family: 'OpenSans Regular';
+  src: url('../resources/fonts/opensans/opensans_regular.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Bold';
+  src: url('../resources/fonts/opensans/opensans_bold.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Bold Italic';
+  src: url('../resources/fonts/opensans/opensans_bold_italic.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Extra Bold';
+  src: url('../resources/fonts/opensans/opensans_extra_bold.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Extra Bold Italic';
+  src: url('../resources/fonts/opensans/opensans_extra_bold_italic.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Italic';
+  src: url('../resources/fonts/opensans/opensans_italic.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Light';
+  src: url('../resources/fonts/opensans/opensans_light.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Light Italic';
+  src: url('../resources/fonts/opensans/opensans_light_italic.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Semi Bold';
+  src: url('../resources/fonts/opensans/opensans_semibold.ttf') format('truetype'); 
+}
+@font-face{    
+  font-family: 'OpenSans Semi Bold Italic';
+  src: url('../resources/fonts/opensans/opensans_semibold_italic.ttf') format('truetype'); 
+}
+
+body{
+    background: rgb(236, 240, 241);
+    font-family: 'OpenSans Light', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color:#333;
+}
+
+/*div*/
+.wrapper-page{
+    width:960px;
+    margin:0 auto;
+}
+
+section {
+    margin:3em 0;
+    float:left;
+    width:100%;
+}
+
+/* ul,ol */
+.generallist{
+    list-style: none;
+    float:left;
+    width:100%;
+}
+    .generallist li{
+        float:left;
+        clear:both;
+    }
+
+
+em {
+    font-style:normal;
+    font-family: 'OpenSans Light Italic', sans-serif;
+}
+
+
+
+
+/*
+** MODULE:: head;
+*/
+header{
+    float:left;
+    width:100%;
+    color:#dfdfdf;
+    /* css3:: gradient */
+        background: #444b52; /* fallback for IE < 9 */
+        background: -webkit-gradient(linear, left top, left bottom, from(#6a727d), to(#444b52)); /* Saf4+, Chrome */
+        background: -webkit-linear-gradient(top, #6a727d, #444b52); /* Chrome 10+, Saf5.1+ */
+        background:    -moz-linear-gradient(top, #6a727d, #444b52); /* FF3.6 */
+        background:     -ms-linear-gradient(top, #6a727d, #444b52); /* IE10 */
+        background:      -o-linear-gradient(top, #6a727d, #444b52); /* Opera 11.10+ */
+        background:         linear-gradient(top, #6a727d, #444b52);
+}
+
+
+    h1{
+        text-align:center;
+        font-family: 'OpenSans Light', serif;
+        font-size:2em;
+    }
+
+    h1 + p{
+        text-align:center;
+    }
+
+    label[for]:hover{
+        cursor: pointer;
+    }
+
+
+/*
+** MODULE:: form;
+*/
+
+/* form */
+.generalform{
+    float:left;
+    width:100%;
+}
+    .generalform fieldset{
+        border:1px dashed #bfbfbf;
+        margin:0.5em 0;
+    }
+
+
+
+    fieldset.fieldgroup-sub{
+        border:none;
+    }
+
+        .fieldgroup-sub input[type=submit]{
+            float:right;
+            margin:0.5em 1em;
+        }
+
+    .generalform legend{
+        margin:1em;
+        background:#fff;
+        padding:0.5em;
+        border:1px solid #bfbfbf;
+    }
+
+        .generalform ul > li{
+            width:98%;
+            margin:0.5em 1%;
+        }
+                .generalform ul > li > label{
+                    float:left;
+                    width:29%;
+                    text-align:right;
+                    padding:0 0.5%;
+                }
+
+                .generalform ul > li > label::after{
+                    content: " :";
+                }
+
+
+        .generalform ol {
+            width:60%;
+            margin:0;
+            padding:0;
+        }
+            .generalform ol li{
+                width:30%;
+                margin:0;
+                padding:0;
+            }
+
+/*form*/
+#madlib-input{
+    width:50%;
+    margin:0 20%;
+
+}
+
+
+
+
+/*
+** MODULE:: STORY;
+*/
+
+/*section*/
+#wrapper-story{
+    margin:3em 0;
+    display:none;
+}
+
+    #wrapper-story article{
+        float:left;
+        width: 46%;
+        padding:0 2%;
+    }
+
+    #wrapper-madlib{
+        text-align:center;
+        background:#fff;
+    }
+        #wrapper-madlib p{
+            line-height: 2em;
+        }
+
+        #wrapper-madlib span{
+            background: yellow;
+            font-family: 'OpenSans Regular', sans-serif;
+        }
+
+    #wrapper-vid iframe{
+        margin:2em 0 0 2%;
+    }
+
 
 
 
