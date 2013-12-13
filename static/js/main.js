@@ -14,10 +14,10 @@ SHRINK = (function(){
 
 	//Event Handler
 	function evtHandler(){
-		jQuery('#madlib-input').submit(function(event){
+		jQuery('#form-shrink').submit(function(event){
 			event.preventDefault();
 
-			lurl = jQuery('#field-long').val();
+			lurl = jQuery('#field-link-long').val();
 
 
 			// regex reference link:
@@ -32,8 +32,6 @@ SHRINK = (function(){
 			}else{
 				alert("long url not in correct format");
 			}
-			
-
 
 		});
 	}

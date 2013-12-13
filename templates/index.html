@@ -9,9 +9,9 @@
 
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+        <link rel="stylesheet" href="static/css/normalize.css">
+        <link rel="stylesheet" href="static/css/main.css">
+        <script src="static/js/vendor/modernizr-2.7.1.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -19,12 +19,126 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+       <header>
+            <div class="wrapper-page">
+                <figure class="pict" id="pict-self">
+                    <img src="static/img/pict_evie.jpg">
+                </figure>
+                <h1>Evie Phan</h1>
+                <p>Badass Gamer</p>
+            </div>
+        </header>
+        <section>
+            <div class="wrapper-page">
+                <h2>My Saved Links</h2>
+            </div>
+        </section>
+        <section>
+            <div class="wrapper-page">
+                <div class="container-sect">
+                    <form class="generalform" id="form-shrink" action="/shorts">
+                        <fieldset>
+                            <ul class="generallist wrappedfield">
+                                <li>
+                                    <input type="text" id="field-link-long" placeholder="longurl" pattern="^[a-zA-Z0-9_-.]*$" name="l" required>
+                                    <input type="text" id="field-link-short" placeholder="shorturl" pattern="^[a-zA-Z0-9_-.]*$" name="s" required>
+                                    <input type="text" id="field-link-bundle" list="sbundle" name="b" placeholder="bundle" >
+                                    <datalist id="sbundle">
+                                        <option value="bundlename1"></option>
+                                        <option value="bundlename2"></option>
+                                        <option value="bundlename3"></option>
+                                    </datalist>
+                                    <button class="icon-entypo" class="btn-addmore" title="add more links">&oplus;</button>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <fieldset class="fieldgroup-sub">
+                            <input type="submit">
+                        </fieldset>
+                    </form>
+                </div>
+                <article class="container-sect" id="wrapper-links">
+                    <ul class="list-bundle">
+                        <li class="list-bundle-item">
+                            <span class="slink-bundle">Profile</span>
+
+                            <ul class="list-link">
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-bundle-item">
+                            <span class="slink-bundle">Resume</span>
+
+                            <ul class="list-link">
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-bundle-item">
+                            <span class="slink-bundle">Fun</span>
+
+                            <ul class="list-link">
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                                <li class="list-link-item">
+                                    <span class="link-long">www.github.com</span>
+                                    <span class="link-short">gh</span>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </article>
+
+
+            </div>
+
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="static/js/plugins.js"></script>
+        <script src="static/js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

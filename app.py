@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
-# import shelve
+import shelve
 import flask
 from flask import request
 # from os import environ
-from shrinkdb import db
-# import json
+# from shrinkdb import db
+import json
 import re
 
 app = flask.Flask(__name__)
 app.debug = True
 
-# db = shelve.open("shorten.db")
+db = shelve.open("shorten.db")
 
 # db = {}
 
@@ -108,3 +108,4 @@ def short_put():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
+
